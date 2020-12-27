@@ -51,12 +51,15 @@ inline cl::Kernel createKernel(const std::string& kernel_name, cl::Program& prog
     auto kernel_code = loadKernel(kernel_name);
 
     cl::Program::Sources source(1, std::make_pair(kernel_code.c_str(), kernel_code.length()));
-    //cl::Program
     program = cl::Program(context, source, &error_val);
     clCheckError(error_val);
 
     error_val = program.build();
     clCheckError(error_val);
+    if (error_val != CL_SUCCESS)
+    {
+        std::cout << "Build log: \n" << program.getBuildInfo<CL_PROGRAM_BUILD_LOG>(device) << "\n\n";
+    }
 
     auto kernel = cl::Kernel(program, kernel_name.c_str(), &error_val);
     clCheckError(error_val);
