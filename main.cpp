@@ -101,7 +101,7 @@ int main(int argc, char* argv[])
     }
     else if (mode == 1)
     {
-        std::cout << "\n\n[EXECUTING]: Base non-lookup based kernel for checking if basic OpenCL is working\n";
+        std::cout << "\n\n[EXECUTING]: 1D Lut Lookup\n";
         num_entries = 30;
         execute1DLutKernel(&in_data, &result_data, num_entries, min_input_value, max_input_value);
 
@@ -115,7 +115,7 @@ int main(int argc, char* argv[])
     }
     else if (mode == 2)
     {
-        std::cout << "\n\n[EXECUTING]: Base non-lookup based kernel for checking if basic OpenCL is working\n";
+        std::cout << "\n\n[EXECUTING]: 2D Lut Lookup\n";
         num_entries = 4;
         execute2DLutKernel(&in_data, &result_data, num_entries, min_input_value, max_input_value);
 
@@ -123,6 +123,20 @@ int main(int argc, char* argv[])
         RgbaData* result = reinterpret_cast<RgbaData*>(result_data);
         std::cout << "Kernel results:\n";
         for (uint32_t i = 0; i < num_entries * num_entries; i++)
+        {
+            std::cout << "  result[" << i << "] = " << result[i] << "  (for input " << input[i] <<  '\n';
+        }
+    }
+    else if (mode == 3)
+    {
+        std::cout << "\n\n[EXECUTING]: 3D Lut Lookup\n";
+        num_entries = 3;
+        execute3DLutKernel(&in_data, &result_data, num_entries, min_input_value, max_input_value);
+
+        RgbaData* input  = reinterpret_cast<RgbaData*>(in_data);
+        RgbaData* result = reinterpret_cast<RgbaData*>(result_data);
+        std::cout << "Kernel results:\n";
+        for (uint32_t i = 0; i < num_entries * num_entries * num_entries; i++)
         {
             std::cout << "  result[" << i << "] = " << result[i] << "  (for input " << input[i] <<  '\n';
         }
