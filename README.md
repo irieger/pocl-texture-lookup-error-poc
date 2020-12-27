@@ -15,6 +15,20 @@ Just running `make` should be sufficient as long as OpenCL is in the path.
 
 **Warning:** No fancy device selection is implemented. If POCL isn't the first platform it might not be selected.
 
+### Running
+
+Running this tool is done by just using
+
+`./demo MODE`
+
+With mode being one of:
+
+0. Basic OpenCL test
+1. 1D Lut (cl::Image1D) texture
+1. 2D Lut (cl::Image2D) texture
+1. 3D Lut (cl::Image2D) texture
+
+`POCL_DEBUG=1 ./demo MODE` can be used to get the POCL debug output.
 
 ## Where did I run this
 
