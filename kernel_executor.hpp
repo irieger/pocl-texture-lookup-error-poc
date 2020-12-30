@@ -69,7 +69,7 @@ bool execute1DLutKernel(void** in_data, void** out_data, const uint32_t& num_ent
 
     auto lut_ptr = (void*) lut_1d_data.data();
     cl::Image1D lut1d_cl_image(context, CL_MEM_READ_ONLY | CL_MEM_COPY_HOST_PTR,
-            cl::ImageFormat(CL_R, CL_FLOAT), lut_1d_size, lut_ptr);
+            cl::ImageFormat(CL_A, CL_FLOAT), lut_1d_size, lut_ptr);
 
     std::string kernel_name = "lut1d_kernel";
     uint8_t param_count = 0;

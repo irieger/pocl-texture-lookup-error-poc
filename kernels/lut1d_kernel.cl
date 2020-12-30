@@ -19,8 +19,8 @@ __kernel void lut1d_kernel(
         input = input > 1 ? 1 : (input < 0 ? 0 : input);
         input = input * (lut1d_size - 1);
         float pos = floor(input);
-        float lower = read_imagef(lut1d, sampler_1d, pos).x;
-        float upper = read_imagef(lut1d, sampler_1d, pos + 1).x;
+        float lower = read_imagef(lut1d, sampler_1d, pos).w;
+        float upper = read_imagef(lut1d, sampler_1d, pos + 1).w;
         float diff = input - pos;
         
         input = diff * upper + (1 - diff) * lower;

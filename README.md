@@ -8,6 +8,14 @@ As I already reported in the issue https://github.com/pocl/pocl/issues/864 I hav
 
 **Note:** Currently I haven't tested the code in this state on the Raspberry but will follow up with it later on.
 
+## Finding the Bug - CL_A and CL_R
+
+The bug was deep in the detail. Using 1D lookup tables in OpenCL on AMD and NVidia OpenCL devices works when using CL_R as the channel format so only loading one channel into the lookup table. However POCL doesn't support this mode, but allows CL_A for single channel.
+
+**Using CL_A instead of CL_R and thus also using the .w instead of .z channel on the lookup works**
+
+(See version 074cda3d or older to see the original code if you want to test further)
+
 
 ## Building & Running
 
